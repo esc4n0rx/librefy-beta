@@ -1,98 +1,188 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { router } from 'expo-router';
+import React, { useEffect } from 'react';
+import { Alert, StyleSheet, View } from 'react-native';
+import Animated, { FadeInUp } from 'react-native-reanimated';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { Button } from '@/components/ui/button';
+import { Colors, Spacing } from '@/constants/theme';
+import { useAuth } from '@/hooks/use-auth';
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const { user, isLoading, isAuthenticated, logout } = useAuth();
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      router.replace('/welcome');
+    }
+  }, [isAuthenticated, isLoading]);
+
+  const handleLogout = async () => {
+    Alert.alert(
+      'Sair',
+      'Tem certeza que deseja sair da sua conta?',
+      [
+        {
+          text: 'Cancelar',
+          style: 'cancel',
+        },
+        {
+          text: 'Sair',
+          style: 'destructive',
+          onPress: logout,
+        },
+      ]
+    );
+  };
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ThemedView style={styles.loadingContainer}>
+          <ThemedText>Carregando...</ThemedText>
+        </ThemedView>
+      </SafeAreaView>
+    );
+  }
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ThemedView style={styles.content}>
+        <Animated.View
+          entering={FadeInUp.delay(100).duration(600).springify()}
+          style={styles.welcomeContainer}
+        >
+          <ThemedText style={styles.title}>
+            Bem-vindo ao Librefy!
+          </ThemedText>
+          <ThemedText style={styles.subtitle}>
+            Olá, {user?.name}! 👋
+          </ThemedText>
+        </Animated.View>
+
+        <Animated.View
+          entering={FadeInUp.delay(200).duration(600).springify()}
+          style={styles.infoContainer}
+        >
+          <View style={styles.userInfo}>
+            <ThemedText style={styles.label}>Nome:</ThemedText>
+            <ThemedText style={styles.value}>{user?.name}</ThemedText>
+          </View>
+          
+          <View style={styles.userInfo}>
+            <ThemedText style={styles.label}>Username:</ThemedText>
+            <ThemedText style={styles.value}>@{user?.username}</ThemedText>
+          </View>
+          
+          <View style={styles.userInfo}>
+            <ThemedText style={styles.label}>Email:</ThemedText>
+            <ThemedText style={styles.value}>{user?.email}</ThemedText>
+          </View>
+        </Animated.View>
+
+        <Animated.View
+          entering={FadeInUp.delay(300).duration(600).springify()}
+          style={styles.comingSoonContainer}
+        >
+          <ThemedText style={styles.comingSoonTitle}>
+            🚧 Em construção
+          </ThemedText>
+          <ThemedText style={styles.comingSoonText}>
+            Estamos trabalhando nas próximas funcionalidades do Librefy. Em breve você poderá descobrir, ler e escrever histórias incríveis!
+          </ThemedText>
+        </Animated.View>
+
+        <Animated.View
+          entering={FadeInUp.delay(400).duration(600).springify()}
+          style={styles.logoutContainer}
+        >
+          <Button
+            title="Sair da conta"
+            variant="outline"
+            size="md"
+            onPress={handleLogout}
+            style={styles.logoutButton}
+          />
+        </Animated.View>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: Spacing.xl,
+    paddingVertical: Spacing.lg,
+    justifyContent: 'space-between',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  welcomeContainer: {
+    alignItems: 'center',
+    gap: Spacing.sm,
+    marginTop: Spacing.xl,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  title: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: Colors.light.primary,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 18,
+    opacity: 0.8,
+    textAlign: 'center',
+  },
+  infoContainer: {
+    backgroundColor: Colors.light.neutral,
+    borderRadius: 16,
+    padding: Spacing.lg,
+    gap: Spacing.md,
+  },
+  userInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: '600',
+    opacity: 0.7,
+  },
+  value: {
+    fontSize: 16,
+    fontWeight: '500',
+  },
+  comingSoonContainer: {
+    alignItems: 'center',
+    gap: Spacing.md,
+    paddingHorizontal: Spacing.md,
+  },
+  comingSoonTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  comingSoonText: {
+    fontSize: 16,
+    opacity: 0.7,
+    textAlign: 'center',
+    lineHeight: 24,
+  },
+  logoutContainer: {
+    alignItems: 'center',
+    marginBottom: Spacing.lg,
+  },
+  logoutButton: {
+    borderColor: Colors.light.error,
   },
 });
