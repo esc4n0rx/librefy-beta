@@ -1,12 +1,12 @@
 // Fallback for using MaterialIcons on Android and web.
 
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { SymbolViewProps, SymbolWeight } from 'expo-symbols';
+import { SymbolWeight } from 'expo-symbols';
 import { ComponentProps } from 'react';
 import { OpaqueColorValue, type StyleProp, type TextStyle } from 'react-native';
 
-type IconMapping = Record<SymbolViewProps['name'], ComponentProps<typeof MaterialIcons>['name']>;
 type IconSymbolName = keyof typeof MAPPING;
+type MaterialIconName = ComponentProps<typeof MaterialIcons>['name'];
 
 /**
  * Add your SF Symbols to Material Icons mappings here.
@@ -35,7 +35,35 @@ const MAPPING = {
   'eye.fill': 'visibility',
   'eye.slash': 'visibility-off',
   'eye.slash.fill': 'visibility-off',
-} as IconMapping;
+
+  // New icons for the app
+  'magnifyingglass': 'search',
+  'compass': 'explore',
+  'compass.fill': 'explore',
+  'books.vertical': 'library-books',
+  'books.vertical.fill': 'library-books',
+  'book': 'menu-book',
+  'book.fill': 'menu-book',
+  'plus': 'add',
+  'plus.circle': 'add-circle',
+  'plus.circle.fill': 'add-circle',
+  'star': 'star-border',
+  'star.fill': 'star',
+  'heart': 'favorite-border',
+  'heart.fill': 'favorite',
+  'bookmark': 'bookmark-border',
+  'bookmark.fill': 'bookmark',
+  'gearshape': 'settings',
+  'gearshape.fill': 'settings',
+  'bell': 'notifications-none',
+  'bell.fill': 'notifications',
+  'list.bullet': 'list',
+  'square.grid.2x2': 'grid-view',
+  'slider.horizontal.3': 'tune',
+  'arrow.up.right': 'launch',
+  'info.circle': 'info-outline',
+  'info.circle.fill': 'info',
+} as const;
 
 /**
  * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.
@@ -54,5 +82,5 @@ export function IconSymbol({
   style?: StyleProp<TextStyle>;
   weight?: SymbolWeight;
 }) {
-  return <MaterialIcons color={color} size={size} name={MAPPING[name]} style={style} />;
+  return <MaterialIcons color={color} size={size} name={MAPPING[name] as MaterialIconName} style={style} />;
 }
