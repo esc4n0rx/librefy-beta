@@ -66,7 +66,7 @@ export default function ForgotPasswordScreen() {
 
   if (emailSent) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} edges={['bottom']}>
         <ThemedView style={styles.content}>
           <Animated.View
             entering={FadeInUp.delay(100).duration(600).springify()}
@@ -121,7 +121,7 @@ export default function ForgotPasswordScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['bottom']}>
       <LoadingOverlay visible={loading} message="Enviando código..." />
       
       <KeyboardAvoidingView

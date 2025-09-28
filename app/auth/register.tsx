@@ -153,7 +153,7 @@ export default function RegisterScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
+    <SafeAreaView style={styles.container} edges={['bottom']}>
       <LoadingOverlay visible={loading} message="Criando conta..." />
       
       <KeyboardAvoidingView

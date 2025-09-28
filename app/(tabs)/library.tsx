@@ -1,10 +1,12 @@
+import { router } from 'expo-router';
 import React, { useState } from 'react';
 import {
-  Alert,
-  FlatList,
-  RefreshControl,
-  StyleSheet,
-  View,
+    Alert,
+    FlatList,
+    Pressable,
+    RefreshControl,
+    StyleSheet,
+    View,
 } from 'react-native';
 import Animated, { FadeInDown, FadeInLeft, FadeInUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -132,7 +134,7 @@ export default function LibraryScreen() {
       [
         { text: 'Cancelar', style: 'cancel' },
         { text: 'Procurar Livros', onPress: () => console.log('Buscar livros') },
-        { text: 'Escrever Livro', onPress: () => console.log('Escrever novo livro') },
+        { text: 'Escrever Livro', onPress: () => router.push('/create-book') },
       ]
     );
   };
@@ -168,25 +170,37 @@ export default function LibraryScreen() {
       entering={FadeInUp.delay((index + 5) * 80).duration(600).springify()}
       style={viewMode === 'grid' ? styles.gridItem : styles.listItem}
     >
-      <View style={styles.bookContainer}>
+      <Pressable style={styles.bookContainer} onLongPress={() => handleBookLongPress(item)}>
         <BookCard 
           book={{
             id: item.book_id,
+            author_id: '', // Nota: API da library não retorna author_id
             title: item.title,
-            author: item.author_name,
-            cover_url: item.cover_url,
+            slug: item.title.toLowerCase().replace(/\s+/g, '-'),
             description: item.description,
-            rating: 0, // Nota: API não retorna rating, pode usar likes_count como base
-            genre: [], // Nota: API não retorna gêneros
-            status: item.reading_status || 'want_to_read',
-            progress: item.progress,
-            published_date: item.published_at,
+            cover_url: item.cover_url,
+            status: 'published', // Livros na library são sempre publicados
+            visibility: 'public',
+            tags: [], // Nota: API não retorna tags
+            words_count: item.words_count,
+            chapters_count: item.chapters_count,
+            likes_count: item.likes_count,
+            reads_count: item.reads_count,
             created_at: item.saved_at,
             updated_at: item.saved_at,
+            published_at: item.published_at,
+            users: {
+              id: '', // Nota: API não retorna user_id
+              name: item.author_name,
+              username: item.author_username,
+              avatar_url: item.author_avatar,
+            },
+            average_rating: 0, // Nota: API não retorna rating
+            ratings_count: 0,
+            comments_count: 0,
           }}
           variant={viewMode === 'grid' ? 'compact' : 'default'}
           onPress={() => handleBookPress(item)}
-          onLongPress={() => handleBookLongPress(item)}
         />
         
         {/* Overlays de Status */}
@@ -224,7 +238,7 @@ export default function LibraryScreen() {
             </Animated.View>
           )}
         </View>
-      </View>
+      </Pressable>
     </Animated.View>
   );
 

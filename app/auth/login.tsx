@@ -73,7 +73,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['bottom']}>
       <LoadingOverlay visible={loading} message="Entrando..." />
       
       <KeyboardAvoidingView

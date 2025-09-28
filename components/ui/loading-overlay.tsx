@@ -5,6 +5,7 @@ import {
     ActivityIndicator,
     Modal,
     StyleSheet,
+    useColorScheme,
     View
 } from 'react-native';
 import { ThemedText } from '../themed-text';
@@ -15,14 +16,23 @@ interface LoadingOverlayProps {
 }
 
 export function LoadingOverlay({ visible, message }: LoadingOverlayProps) {
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+
   if (!visible) return null;
 
   return (
     <Modal transparent visible={visible} animationType="fade">
       <View style={styles.overlay}>
         <BlurView intensity={10} style={StyleSheet.absoluteFillObject} />
-        <View style={styles.content}>
-          <ActivityIndicator size="large" color={Colors.light.primary} />
+        <View style={[
+          styles.content,
+          { backgroundColor: isDark ? Colors.dark.surface : Colors.light.surface }
+        ]}>
+          <ActivityIndicator 
+            size="large" 
+            color={isDark ? Colors.dark.primary : Colors.light.primary} 
+          />
           {message && (
             <ThemedText style={styles.message}>{message}</ThemedText>
           )}
@@ -40,7 +50,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
   },
   content: {
-    backgroundColor: 'white',
     borderRadius: 16,
     padding: Spacing.xl,
     alignItems: 'center',

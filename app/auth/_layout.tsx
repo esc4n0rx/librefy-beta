@@ -1,18 +1,22 @@
 import { Colors } from '@/constants/theme';
 import { Stack } from 'expo-router';
-import { Platform } from 'react-native';
+import { Platform, useColorScheme } from 'react-native';
 
 export default function AuthLayout() {
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+
   return (
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: Colors.light.background,
+          backgroundColor: isDark ? Colors.dark.background : Colors.light.background,
         },
-        headerTintColor: Colors.light.primary,
+        headerTintColor: isDark ? Colors.dark.primary : Colors.light.primary,
         headerTitleStyle: {
           fontWeight: '600',
           fontSize: 18,
+          color: isDark ? Colors.dark.text : Colors.light.text,
         },
         headerShadowVisible: Platform.OS === 'ios',
         animation: 'slide_from_right',

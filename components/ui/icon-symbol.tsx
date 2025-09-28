@@ -1,3 +1,4 @@
+// components/ui/icon-symbol.tsx
 // Fallback for using MaterialIcons on Android and web.
 
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
@@ -159,6 +160,165 @@ const MAPPING = {
   'chevron.down': 'keyboard-arrow-down',
   'chevron.left': 'keyboard-arrow-left',
   'chevron-right': 'keyboard-arrow-right',
+
+  // NEW ICONS - Adicionados para as novas funcionalidades
+
+  // Comments and messaging
+  'text.bubble': 'chat-bubble-outline',
+  'text.bubble.fill': 'chat-bubble',
+  'message': 'message',
+  'message.fill': 'message',
+  'quote.bubble': 'format-quote',
+  'quote.bubble.fill': 'format-quote',
+
+  // Rating and feedback
+  'hand.thumbsup': 'thumb-up',
+  'hand.thumbsup.fill': 'thumb-up',
+  'hand.thumbsdown': 'thumb-down',
+  'hand.thumbsdown.fill': 'thumb-down',
+  'flag': 'flag',
+  'flag.fill': 'flag',
+
+  // Reading and book specific
+  'text.book.closed': 'book',
+  'text.book.closed.fill': 'book',
+  'newspaper': 'newspaper',
+  'newspaper.fill': 'newspaper',
+  'character.book.closed': 'auto-stories',
+  'character.book.closed.fill': 'auto-stories',
+  'bookmark.circle': 'bookmark-added',
+  'bookmark.circle.fill': 'bookmark-added',
+
+  // User interaction
+  'person.crop.circle': 'account-circle',
+  'person.crop.circle.fill': 'account-circle',
+  'person.2': 'people',
+  'person.2.fill': 'people',
+  'person.3': 'groups',
+  'person.3.fill': 'groups',
+
+  // Time and dates
+  'calendar.circle': 'event-available',
+  'calendar.circle.fill': 'event-available',
+  'clock.circle': 'schedule',
+  'clock.circle.fill': 'schedule',
+
+  // Content creation
+  'square.and.pencil': 'create',
+  'rectangle.and.pencil.and.ellipsis': 'rate-review',
+  'text.badge.plus': 'add-comment',
+  'text.badge.minus': 'remove-comment',
+
+  // Social features
+  'bubble.left': 'comment',
+  'bubble.left.fill': 'comment',
+  'bubble.right': 'comment',
+  'bubble.right.fill': 'comment',
+  'quote.closing': 'format-quote',
+  'quote.opening': 'format-quote',
+
+  // Categories and tags
+  'tag': 'local-offer',
+  'tag.fill': 'local-offer',
+  'tags': 'local-offer',
+  'tags.fill': 'local-offer',
+  'folder': 'folder',
+  'folder.fill': 'folder',
+  'folder.badge.plus': 'create-new-folder',
+
+  // Statistics and analytics
+  'chart.bar': 'bar-chart',
+  'chart.bar.fill': 'bar-chart',
+  'chart.line.uptrend.xyaxis': 'trending-up',
+  'chart.pie': 'pie-chart',
+  'chart.pie.fill': 'pie-chart',
+
+  // Library management
+  'tray': 'inbox',
+  'tray.fill': 'inbox',
+  'tray.and.arrow.down': 'move-to-inbox',
+  'tray.and.arrow.up': 'outbox',
+  'archivebox': 'archive',
+  'archivebox.fill': 'archive',
+
+  // Search and discovery
+  'scope': 'search',
+  'safari': 'explore',
+  'safari.fill': 'explore',
+  'binoculars': 'search',
+  'binoculars.fill': 'search',
+
+  // Settings and preferences
+  'slider.horizontal.below.rectangle': 'tune',
+  'slider.horizontal.2.rectangle': 'equalizer',
+  'switch.2': 'compare',
+  'rectangles.on.rectangle': 'dashboard',
+
+  // Notifications
+  'bell.badge': 'notifications-active',
+  'bell.badge.fill': 'notifications-active',
+  'bell.slash': 'notifications-off',
+  'bell.slash.fill': 'notifications-off',
+
+  // Device and system
+  'iphone': 'phone-android',
+  'ipad': 'tablet-android',
+  'desktopcomputer': 'desktop-mac',
+  'laptopcomputer': 'laptop-mac',
+
+  // Network and connectivity
+  'network': 'network-check',
+  'antenna.radiowaves.left.and.right': 'wifi',
+  'personalhotspot': 'wifi-tethering',
+
+  // Security and privacy
+  'lock.shield': 'security',
+  'lock.shield.fill': 'security',
+  'key.horizontal': 'vpn-key',
+  'key.horizontal.fill': 'vpn-key',
+
+  // Download and sync
+  'icloud.and.arrow.down': 'cloud-download',
+  'icloud.and.arrow.up': 'cloud-upload',
+  'arrow.triangle.2.circlepath': 'sync',
+  'arrow.clockwise': 'refresh',
+  'arrow.counterclockwise': 'refresh',
+
+  // Quality and verification
+  'rosette': 'verified',
+  'checkmark.seal': 'verified',
+  'checkmark.seal.fill': 'verified',
+  'star.leadinghalf.filled': 'star-half',
+
+  // Content type indicators
+  'textformat.abc': 'text-fields',
+  'textformat.123': 'title',
+  'textformat.alt': 'format-color-text',
+  'bold': 'format-bold',
+  'italic': 'format-italic',
+  'underline': 'format-underlined',
+
+  // File and document types
+  'doc.plaintext': 'description',
+  'doc.plaintext.fill': 'description',
+  'doc.richtext': 'article',
+  'doc.richtext.fill': 'article',
+  'note.text': 'note',
+  'note.text.badge.plus': 'note-add',
+
+  // Organization
+  'rectangle.stack': 'layers',
+  'rectangle.stack.fill': 'layers',
+  'square.stack': 'stack',
+  'square.stack.fill': 'stack',
+  'list.dash': 'format-list-bulleted',
+  'list.number': 'format-list-numbered',
+
+  // Special states
+  'exclamationmark.2': 'priority-high',
+  'questionmark': 'help-outline',
+  'questionmark.circle': 'help-outline',
+  'questionmark.circle.fill': 'help',
 } as const;
 
 /**
