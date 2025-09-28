@@ -36,7 +36,7 @@ const MAPPING = {
   'eye.slash': 'visibility-off',
   'eye.slash.fill': 'visibility-off',
 
-  // New icons for the app
+  // Navigation and Discovery icons
   'magnifyingglass': 'search',
   'compass': 'explore',
   'compass.fill': 'explore',
@@ -63,6 +63,102 @@ const MAPPING = {
   'arrow.up.right': 'launch',
   'info.circle': 'info-outline',
   'info.circle.fill': 'info',
+
+  // Library and Reading Status icons
+  'checkmark.circle': 'check-circle-outline',
+  'checkmark.circle.fill': 'check-circle',
+  'checkmark': 'check',
+  'checkmark.fill': 'check',
+  
+  // Download and Offline icons
+  'arrow.down': 'arrow-downward',
+  'arrow.down.circle': 'get-app',
+  'arrow.down.circle.fill': 'get-app',
+  'arrow.up': 'arrow-upward',
+  'arrow.up.circle': 'publish',
+  'arrow.up.circle.fill': 'publish',
+  'cloud.fill': 'cloud',
+  'cloud': 'cloud-queue',
+  'wifi.slash': 'wifi-off',
+  'wifi': 'wifi',
+  
+  // Status and Alert icons
+  'exclamationmark.triangle': 'warning',
+  'exclamationmark.triangle.fill': 'warning',
+  'exclamationmark.circle': 'error-outline',
+  'exclamationmark.circle.fill': 'error',
+  'clock': 'schedule',
+  'clock.fill': 'schedule',
+  
+  // Progress and Loading icons
+  'progress.indicator': 'hourglass-empty',
+  'hourglass': 'hourglass-empty',
+  'hourglass.fill': 'hourglass-full',
+  
+  // Actions icons
+  'trash': 'delete-outline',
+  'trash.fill': 'delete',
+  'pencil': 'edit',
+  'pencil.circle': 'edit',
+  'pencil.circle.fill': 'edit',
+  'share': 'share',
+  'share.fill': 'share',
+  'refresh': 'refresh',
+  'refresh.circle': 'refresh',
+  'refresh.circle.fill': 'refresh',
+  
+  // Media and Content icons
+  'play': 'play-arrow',
+  'play.fill': 'play-arrow',
+  'play.circle': 'play-circle-outline',
+  'play.circle.fill': 'play-circle',
+  'pause': 'pause',
+  'pause.fill': 'pause',
+  'pause.circle': 'pause-circle-outline',
+  'pause.circle.fill': 'pause-circle',
+  'stop': 'stop',
+  'stop.fill': 'stop',
+  'stop.circle': 'stop-circle',
+  'stop.circle.fill': 'stop-circle',
+  
+  // Filter and Sort icons
+  'line.3.horizontal.decrease': 'sort',
+  'arrow.up.arrow.down': 'import-export',
+  'funnel': 'filter-list',
+  'funnel.fill': 'filter-list',
+  
+  // Miscellaneous icons
+  'ellipsis': 'more-horiz',
+  'ellipsis.circle': 'more-horiz',
+  'ellipsis.circle.fill': 'more-horiz',
+  'plus.circle.dashed': 'add-circle-outline',
+  'minus': 'remove',
+  'minus.circle': 'remove-circle-outline',
+  'minus.circle.fill': 'remove-circle',
+  'xmark': 'close',
+  'xmark.circle': 'cancel',
+  'xmark.circle.fill': 'cancel',
+  
+  // Text and Document icons
+  'text.alignleft': 'format-align-left',
+  'text.aligncenter': 'format-align-center',
+  'text.alignright': 'format-align-right',
+  'textformat': 'format-color-text',
+  'textformat.size': 'format-size',
+  'doc': 'description',
+  'doc.fill': 'description',
+  'doc.text': 'article',
+  'doc.text.fill': 'article',
+  
+  // Navigation arrows
+  'arrow.left': 'arrow-back',
+  'arrow.right': 'arrow-forward',
+  'arrow-upward': 'arrow-upward',
+  'arrow-downward': 'arrow-downward',
+  'chevron.up': 'keyboard-arrow-up',
+  'chevron.down': 'keyboard-arrow-down',
+  'chevron.left': 'keyboard-arrow-left',
+  'chevron-right': 'keyboard-arrow-right',
 } as const;
 
 /**
